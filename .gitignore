@@ -1,4 +1,7 @@
 
-target/
 dbt_packages/
 logs/
+dbt_modules/
+target/
+profiles.yml
+.env
