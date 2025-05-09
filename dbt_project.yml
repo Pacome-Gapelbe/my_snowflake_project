@@ -2,7 +2,7 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'my_snowflake_project'
+name: 'jaffle_shop'
 version: '1.0.0'
 
 # This setting configures which "profile" dbt uses for this project.
@@ -33,6 +33,6 @@ models:
   my_snowflake_project:
     # Config indicated by + and applies to all files under models/example/
     marts:
-      materialized: table
+      +materialized: table
     staging:
-      materialized: view
+      +materialized: view
