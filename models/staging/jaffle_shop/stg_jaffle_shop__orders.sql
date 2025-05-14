@@ -1,3 +1,10 @@
+{{
+  config(
+    materialized='incremental',
+    unique_key='order_id'
+
+  )
+}}
 with 
 
 source as (
@@ -18,9 +25,14 @@ transformed as (
     case 
         when status not in ('returned','return_pending') 
         then order_date 
-    end as valid_order_date
+    end as valid_order_date ,
+    _ETL_LOADED_AT as update_at_timestamp
 
   from source
+  {% if is_incremental() %}
+   where _ETL_LOADED_AT > (select max(update_at_timestamp) from {{this}})
+
+  {% endif %}
 
 )
 
