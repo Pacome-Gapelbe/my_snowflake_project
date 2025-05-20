@@ -2,21 +2,43 @@ version: 2
 
 models:
   - name: stg_jaffle_shop__customers
+    config:
+      contract:
+        enforced: true
+      group: finance
+      access: private
+
     columns:
       - name: customer_id
+        data_type: number
+        constraints:
+          - type: not_null
         tests:
           - unique
           - not_null
+
+      - name: customer_last_name
+        data_type: varchar
+
+      - name: customer_first_name
+        data_type: varchar
+
+      - name: full_name
+        data_type: varchar
+
   - name: stg_jaffle_shop__orders
     columns:
       - name: order_id
         tests:
           - unique
           - not_null
+
       - name: status
+        # Uncomment if needed:
         # tests:
         #   - accepted_values:
-        #       values: ['shipped', 'completed', 'return_peding', 'placed', 'returned']
+        #       values: ['shipped', 'completed', 'return_pending', 'placed', 'returned']
+
       - name: customer_id
         tests:
           - relationships:
