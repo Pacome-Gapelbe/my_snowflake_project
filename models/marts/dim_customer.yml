@@ -1,0 +1,7 @@
+models:
+  - name: dim_customer
+    config:
+      group: finance
+  - name: fct_orders
+    config:
+      group: finance
